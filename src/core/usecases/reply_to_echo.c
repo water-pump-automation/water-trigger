@@ -15,8 +15,6 @@ Listener EchoReplyListenAsync()
         return NULL;
     }
 
-    StartListening(listener);
-
     pthread_t reply_thread;
     pthread_create(&reply_thread, NULL, (void *(*)(void *))StartListening, listener);
     pthread_detach(reply_thread);

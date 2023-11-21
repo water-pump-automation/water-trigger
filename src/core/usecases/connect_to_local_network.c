@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
-WTGR_Bool ConnectToLocalNetwork(Input *input, Output *output)
+WTGR_Bool ConnectToLocalNetwork(Input *input, Output *output, int retries)
 {
-    return (WTGR_Bool) Connect(MAX_RETRY, input, output);
+    return (WTGR_Bool) Connect(retries, input, output);
 }

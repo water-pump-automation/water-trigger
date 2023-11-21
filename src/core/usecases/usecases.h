@@ -11,7 +11,7 @@
 #define MAX_RETRY 3
 
 /* Network connection */
-WTGR_Bool ConnectToLocalNetwork(Input *input, Output *output);
+WTGR_Bool ConnectToLocalNetwork(Input *input, Output *output, int retries);
 
 /* ICMP reply */
 Listener EchoReplyListenAsync();

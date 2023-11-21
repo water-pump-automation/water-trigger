@@ -2,12 +2,11 @@
 
 #include <stdlib.h>
 
-void _activate_sensor(WaterTrigger *trigger)
+void _activate_sensor(Sensor sensor)
 {
-    if (trigger->sensor != NULL)
+    if (sensor != NULL)
     {
-        ActivateSensor(trigger->sensor);
-        Forward(trigger->topic, trigger->accessToken, OK);
+        ActivateSensor(sensor);
     }
 }
 
@@ -16,6 +15,7 @@ WTGR_Bool DetectedWater(WaterTrigger *trigger)
     if (trigger != NULL)
     {
         SensorDetect(trigger->sensor, (StageTrigger)_activate_sensor);
+        Forward(trigger->topic, trigger->accessToken, OK);
         return wtgr_true;
     }
 }
