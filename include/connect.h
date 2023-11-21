@@ -4,9 +4,9 @@
 typedef char *String;
 typedef enum _bool
 {
-    false = 0,
-    true
-} Bool;
+    not_connected = 0,
+    connected
+} Conn;
 
 typedef struct _input
 {
@@ -21,6 +21,6 @@ typedef struct _output
     String accessToken;
 } Output;
 
-Bool Connect(int retries, Input *input, Output *output);
+Conn Connect(int retries, Input *input, Output *output);
 
 #endif

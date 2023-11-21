@@ -2,19 +2,22 @@
 #define __USECASES_H__
 
 #include "forward.h"
-#include "bool.h"
+#include "boolean.h"
 #include "water_trigger.h"
 
-#include "trigger.h"
 #include "connect.h"
+#include "listener.h"
 
 #define MAX_RETRY 3
 
-Bool ConnectToLocalNetwork(Input *input, Output *output);
+/* Network connection */
+WTGR_Bool ConnectToLocalNetwork(Input *input, Output *output);
 
-Trigger EchoReplyListenAsync();
+/* ICMP reply */
+Listener EchoReplyListenAsync();
 
-Bool DetectedWater(WaterTrigger *trigger);
-Bool WaitToRanOutOfWater(WaterTrigger *trigger);
+/* Sensor actions */
+WTGR_Bool DetectedWater(WaterTrigger *trigger);
+WTGR_Bool WaitToRanOutOfWater(WaterTrigger *trigger);
 
 #endif

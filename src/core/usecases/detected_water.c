@@ -4,18 +4,18 @@
 
 void _activate_sensor(WaterTrigger *trigger)
 {
-    if (sensor != NULL)
+    if (trigger->sensor != NULL)
     {
         ActivateSensor(trigger->sensor);
         Forward(trigger->topic, trigger->accessToken, OK);
     }
 }
 
-Bool DetectedWater(WaterTrigger *trigger)
+WTGR_Bool DetectedWater(WaterTrigger *trigger)
 {
     if (trigger != NULL)
     {
         SensorDetect(trigger->sensor, (StageTrigger)_activate_sensor);
-        return true;
+        return wtgr_true;
     }
 }

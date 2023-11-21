@@ -1,5 +1,6 @@
 #include "water_trigger.h"
-#include "connect_to_network.h"
+#include "listener.h"
+#include "usecases.h"
 
 #include <string.h>
 
@@ -21,19 +22,25 @@ int main()
         wTrigger.topic = forwardParams.topic;
         wTrigger.accessToken = forwardParams.accessToken;
 
-        Trigger echo = EchoReplyListenAsync();
+        Listener listener = EchoReplyListenAsync();
+        if (listener == NULL)
+        {
+            DestroySensor(&sensor);
+            return -1;
+        }
 
         while (OK)
         {
-            if (DetectedWater(wTrigger))
+            if (DetectedWater(&wTrigger))
             {
-                WaitToRanOutOfWater(wTrigger);
+                WaitToRanOutOfWater(&wTrigger);
             }
         }
 
-        DestroySensor(&sensor);
         memset(&wTrigger, 0x00, sizeof(WaterTrigger));
-
-        DestroyTrigger(echo);
+        DestroySensor(&sensor);
+        DestroyListener(&listener);
     }
+
+    return 0;
 }

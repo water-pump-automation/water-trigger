@@ -1,25 +1,25 @@
 #include "usecases.h"
 
 #include "trigger.h"
-#include "reply.h"
-
-#include "protocol.h"
-#include "safe_memory.h"
+#include "listener.h"
+#include "mock_protocol.h"
 
 #include <stdlib.h>
 #include <pthread.h>
 
-Trigger EchoReplyListenAsync()
+Listener EchoReplyListenAsync()
 {
-    Trigger trigger = NewTrigger();
-    if (trigger == NULL)
+    Listener listener = NewMockListener();
+    if (listener == NULL)
     {
         return NULL;
     }
 
+    StartListening(listener);
+
     pthread_t reply_thread;
-    pthread_create(&reply_thread, NULL, (void *(*)(void *))StartReceiving, trigger);
+    pthread_create(&reply_thread, NULL, (void *(*)(void *))StartListening, listener);
     pthread_detach(reply_thread);
 
-    return trigger;
+    return listener;
 }

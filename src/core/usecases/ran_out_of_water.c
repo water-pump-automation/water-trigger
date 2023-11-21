@@ -4,18 +4,18 @@
 
 void _deactivate_sensor(WaterTrigger *trigger)
 {
-    if (sensor != NULL)
+    if (trigger->sensor != NULL)
     {
         DeactivateSensor(trigger->sensor);
         Forward(trigger->topic, trigger->accessToken, NOK);
     }
 }
 
-Bool WaitToRanOutOfWater(WaterTrigger *trigger)
+WTGR_Bool WaitToRanOutOfWater(WaterTrigger *trigger)
 {
     if (trigger != NULL)
     {
         SensorDetect(trigger->sensor, (StageTrigger)_deactivate_sensor);
-        return true;
+        return wtgr_true;
     }
 }
