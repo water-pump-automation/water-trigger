@@ -1,10 +1,15 @@
+.vscode
+build
+tests/test.result
+
 # Prerequisites
 *.d
 
 # Object files
 *.o
 *.ko
-*.obj
+!lib/*o
+*.objs
 *.elf
 
 # Linker output
