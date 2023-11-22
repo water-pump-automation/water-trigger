@@ -1,7 +1,9 @@
 #ifndef __FORWARD_H__
 #define __FORWARD_H__
 
-typedef int Signal;
+#include <stdint.h>
+
+typedef uint8_t Signal;
 
 #define OK 1
 #define NOK 0
